@@ -11,13 +11,14 @@ res.json(gamesNew);
 });
 
 app.get('*', function (req, res) {
-    res.render('index', {newGame: newGames});
+    res.render('index', {newGame: gamesPlayed});
     });
-    
-// app.get("/")
+
+
   // Below code handles when a user submits a form and thus submits data to the server.
   // In each of the below cases, when a user submits form data (a JSON object)
   // ...the JSON is pushed to the appropriate JavaScript array
+
 app.post("/api/gamesPlayed", function(req, res) {
     if (gamesPlayed.length < 5) {
         gamesPlayed.push(req.body);
