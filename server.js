@@ -17,9 +17,14 @@ app.set("view engine", "handlebars");
 //     res.render('index');
 // });
 
+
+
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 app.listen(PORT, function() {
     console.log("Server listening on: http://localhost: " + PORT);
 });
+
+
+

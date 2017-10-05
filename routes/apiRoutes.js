@@ -10,6 +10,10 @@ app.get("/api/newGame", function(req, res) {
 res.json(gamesNew);
 });
 
+app.get('*', function (req, res) {
+    res.render('index', {newGame: newGames});
+    });
+    
 // app.get("/")
   // Below code handles when a user submits a form and thus submits data to the server.
   // In each of the below cases, when a user submits form data (a JSON object)
