@@ -3,7 +3,8 @@ var gamesNew = require("../data/newGame");
 
 module.exports = function(app) {
 app.get("/api/playedGame", function(req, res) {
-res.json(gamesPlayed);
+// res.json(gamesPlayed);
+res.render('index', {newGame: gamesPlayed});
 });
 
 app.get("/api/newGame", function(req, res) {
@@ -20,15 +21,18 @@ app.get('*', function (req, res) {
   // ...the JSON is pushed to the appropriate JavaScript array
 
 app.post("/api/gamesPlayed", function(req, res) {
-    if (gamesPlayed.length < 5) {
+    if (gamesPlayed.length) {
         gamesPlayed.push(req.body);
-        res.json(true);
         console.log(gamesPlayed);
-    }else {
-        gamesNew.push(req.body);
-        res.json(false);
-        console.log(gamesNew);
-        }
+        res.render('index', {newGame: gamesPlayed});
+        // res.json(true);
+    
+    };
+    // }else {
+    //     gamesNew.push(req.body);
+    //     res.json(false);
+    //     console.log(gamesNew);
+    //     }
     });
 };
 
