@@ -3,16 +3,17 @@ var gamesNew = require("../data/newGame");
 
 module.exports = function(app) {
 app.get("/api/playedGame", function(req, res) {
-// res.json(gamesPlayed);
-res.render('index', {newGame: gamesPlayed});
+res.json(gamesPlayed);
 });
 
 app.get("/api/newGame", function(req, res) {
 res.json(gamesNew);
+res.render('index', {newGame: gamesNew});
 });
 
-app.get('*', function (req, res) {
-    res.render('index', {newGame: gamesPlayed});
+app.get('/', function (req, res) {
+    var games = gamesNew;
+    res.render('index', {games});
     });
 
 
@@ -20,15 +21,15 @@ app.get('*', function (req, res) {
   // In each of the below cases, when a user submits form data (a JSON object)
   // ...the JSON is pushed to the appropriate JavaScript array
 
-app.post("/api/gamesPlayed", function(req, res) {
-    if (gamesPlayed.length) {
-        gamesPlayed.push(req.body);
-        console.log(gamesPlayed);
-        res.render('index', {newGame: gamesPlayed});
+app.post("/api/gamesNew", function(req, res) {
+    // if (gamesNew.length) {
+        gamesNew.push(req.body);
+        // console.log(gamesNew);
+        res.redirect('/')
         // res.json(true);
     
-    };
-    // }else {
+    // };
+    // else {
     //     gamesNew.push(req.body);
     //     res.json(false);
     //     console.log(gamesNew);

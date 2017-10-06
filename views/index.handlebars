@@ -1,27 +1,41 @@
+<div class="alert alert-info text-center"role="alert">
+ <h1>Play the Game!!</h1>
+</div>
 <div id=container>
-     <form>
-        <div class="form-group">
-            <label for="enter-game">Game Name:</label>
-            <input type="text" class="form-control" id="enter-game" aria-describedby="emailHelp">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-5">
+                <form method="POST" action="/api/gamesNew">
+                    <div class="form-group">
+                    <label for="enter-game"><h3>Game Name:</h3></label>
+                    <input type="text" class="form-control" id="enter-game" name="name" aria-describedby="emailHelp">
+                    </div>
+                    <button type="submit" class="btn btn-dark mx-auto" style="width: 200px;" id="submit">Submit</button>
+                </form>
         </div>
-            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-    </form>
-    <div class="body">
-        {{#each newGame}}
-        <p>Name: {{this.name}}</p>
-          {{/each}}
-    </div>
+        <ul id="playedbutton">
+    {{#each games}}
+    <p>Game: {{this.name}}</p>
+            <div>
+                <button type="submit" class="btn btn-info" id="played">Played it!</button>
+            </div>
+    {{/each}}
+        </ul>
+    <div class="col" id="has-played"></div>
+  </div>
 </div>
 <script>
-    $("#submit").on("click", function(event) {
-        event.preventDefault();
-        var addGame = {
-            name: $("#enter-game").val().trim()
-        };
-    $.post("/api/gamesPlayed", addGame).done
-    (function(data) {
-        console.log(data)
-    $("#enter-game").val("");
-    });
-});
+    //$("#submit").on("click", function(event) {
+       //event.preventDefault();//
+        //var addGame = {
+           // name: $("#enter-game").val().trim()
+       // };
+    //$.post("/api/gamesNew", addGame).done
+    //(function(data) {
+       // console.log(data)
+    //$("#enter-game").val("");
+    //});
+//});
+
 </script>
+
