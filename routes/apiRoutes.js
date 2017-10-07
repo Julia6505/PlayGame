@@ -13,7 +13,9 @@ res.render('index', {newGame: gamesNew});
 
 app.get('/', function (req, res) {
     var games = gamesNew;
+    // var beenPlayed = gamesPlayed;
     res.render('index', {games});
+    // res.render('index', {beenPlayed});
     });
 
 
@@ -25,18 +27,15 @@ app.post("/api/gamesNew", function(req, res) {
     // if (gamesNew.length) {
         gamesNew.push(req.body);
         // console.log(gamesNew);
-        res.redirect('/')
+        res.redirect('/');
         // res.json(true);
-    
-    // };
-    // else {
-    //     gamesNew.push(req.body);
-    //     res.json(false);
-    //     console.log(gamesNew);
-    //     }
-    });
-};
+});
 
+app.post("/api/gamesPlayed", function(req, res) {
+        gamesPlayed.push(req.body);
+        res.redirect('/');
+});
+};
 
 
 

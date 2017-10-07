@@ -3,7 +3,11 @@
 </div>
 <div id=container>
     <div class="row">
-        <div class="col"></div>
+        <div class="col been-played">
+        {{#each beenPlayed}}
+        <p>{{this.name}}</p>
+          {{/each}}
+        </div>
         <div class="col-5">
                 <form method="POST" action="/api/gamesNew">
                     <div class="form-group">
@@ -13,16 +17,14 @@
                     <button type="submit" class="btn btn-dark mx-auto" style="width: 200px;" id="submit">Submit</button>
                 </form>
         </div>
-        <ul id="playedbutton">
-    {{#each games}}
-    <p>Game: {{this.name}}</p>
-            <div>
-                <button type="submit" class="btn btn-info" id="played">Played it!</button>
-            </div>
-    {{/each}}
-        </ul>
-    <div class="col" id="has-played"></div>
-  </div>
+    <div class="col">
+            <div>Play this game!</div>
+            {{#each games}}
+                <p class="has-played">{{this.name}}</p>
+                <button type="submit" class="btn btn-info played">Played it!</button>
+            {{/each}}
+    </div>
+</div>
 </div>
 <script>
     //$("#submit").on("click", function(event) {
@@ -30,12 +32,20 @@
         //var addGame = {
            // name: $("#enter-game").val().trim()
        // };
-    //$.post("/api/gamesNew", addGame).done
-    //(function(data) {
-       // console.log(data)
-    //$("#enter-game").val("");
-    //});
-//});
 
+
+$(".played").on('click', function (event){
+	$(this).hide();
+    //$(".has-played").hide();
+     event.preventDefault();
+    });
+
+$(".has-played").on('click', function (event){
+	$(this).hide();
+     event.preventDefault();
+    });
+
+
+//});
 </script>
 
